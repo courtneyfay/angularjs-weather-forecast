@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "angular-http-server"
+  },
+  "devDependencies": {
+    "angular-http-server": "^1.9.0"
+  }
+}
