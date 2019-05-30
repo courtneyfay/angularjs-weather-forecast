@@ -9,7 +9,7 @@ weatherApp.constant("__env", env);
 
 //CITY SERVICE
 weatherApp.service("cityService", function() {
-  this.city = "Denver, CO";
+  this.city = "Denver";
 });
 
 //WEATHER SERVICE
@@ -18,9 +18,10 @@ weatherApp.service("weatherService", [
   "__env",
   function($resource, __env) {
     this.getWeather = function(city, days) {
+      var location = `${city},us`;
       var apiKey = __env.apiKey;
       var weatherAPI = $resource(
-        "http://api.openweathermap.org/data/2.5/forecast/daily?APPID=" + apiKey,
+        "http://api.openweathermap.org/data/2.5/forecast?APPID=" + apiKey,
         {
           callback: "JSON_CALLBACK"
         },
@@ -28,7 +29,7 @@ weatherApp.service("weatherService", [
       );
 
       return weatherAPI.get({
-        q: city,
+        q: location,
         cnt: days
       });
     };
